@@ -35,11 +35,20 @@ print(b)
 print(c)
 
 
-Fruit = ("Apple", "Banana", "Cherry")
+Fruit = ("Apple", "Banana", "Cherry","Mango")
 x,y,z= Fruit
 print(x)
 print(y)
 print(z)
+
+#If the number of variables is less than the number of values, you can use the * operator to assign the remaining values to a variable as a list else you will get a ValueError: too many values to unpack (expected 3) error.
+# Example:   
+a, b, *c = 1, 2, 3, 4, 5
+print(a) #Output: 1
+print(b) #Output: 2
+print(c) #Output: [3, 4, 5]
+
+
 
 #You can also assign the same value to multiple variables in one line.
 x = y = z = 0
