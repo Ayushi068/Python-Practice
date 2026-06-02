@@ -146,4 +146,5 @@ The rule: If a variable is assigned anywhere in a function (without global), Pyt
 #3. Global variables
 #4. Built-in variables
 
+#This is called LEGB rule: Local → Enclosing → Global → Built-in
 
