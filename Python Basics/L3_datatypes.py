@@ -43,4 +43,19 @@ print(type(x))
 x = True #bool
 print(type(x)) #Output: <class 'bool'>
 
+x = b"Hello World!" #bytes
+print(type(x)) #Output: <class 'bytes'>
+
+
+x = bytearray(5) #bytearray
+print(type(x)) #Output: <class 'bytearray'>
+
+x = memoryview(bytes(5)) #memoryview
+print(type(x)) #Output: <class 'memoryview'>
+
+x = None #NoneType
+print(type(x)) #Output: <class 'NoneType'>
+
+
+
 
