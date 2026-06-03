@@ -51,3 +51,8 @@ num2 = int(num2) #Casting the input to an integer
 print("The sum of the numbers is : " + str(num1 + num2)) #This will add the numbers and then convert the result to a string for printing.
 print("The sum of the numbers is :", num1 + num2) #This will add the numbers and print the result without needing to convert it to a string.
 
+
+price = 49.99
+quantity = 3
+total_cost = price * quantity
+print(f"The total price of {quantity} kiwi is {total_cost:.2f}") #This will format the total_cost to 2 decimal places.

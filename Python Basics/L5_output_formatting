@@ -1,0 +1,42 @@
+#Example 1 
+print("Hello","World!") #Using comma to separate the arguments in print() function. It will add a space between the arguments.
+print("Hello","World!",sep="-") #Using sep parameter to specify the separator between the arguments. It will replace the default space with the specified separator.
+print("Hello","World!",sep="-",end ="$") #Using end parameter to specify the end character. It will replace the default newline character with the specified end character.
+print("Hello","World!",sep="-",end ="-To India") 
+
+#Example 2
+#%formatting
+
+name = "Ayushi"
+age = 25
+print("Name: %s, Age: %d" % (name , age))
+#%s - refers to string
+#%d - refers to integer
+
+#Example 3
+#String formatting using str.format() method
+price = 10
+quantity = 5
+total_cost = price * quantity
+print("The total price of {} banana is ${:.2f}".format(quantity, total_cost))
+print("The total price of {0} banana is ${1:.2f}".format(quantity, total_cost)) 
+#{} - refers to the placeholder for the variable, so the first {} will be replaced by the first variable in the format() method, and the second {} will be replaced by the second variable in the format() method.
+#{0} - refers to the first variable in the format() method.
+#{1} - refers to the second variable in the format() method.
+#You can also use the variable names in the placeholders.
+print("The total price of {quantity} banana is ${total_cost}".format(quantity=quantity, total_cost=total_cost))
+#You can also specify the format of the output using the format specifiers.
+print("The total price of {quantity} banana is ${total_cost:.2f}".format(quantity=quantity, total_cost=total_cost))
+#:.2f - refers to the format specifier for floating-point numbers, which will format the total_cost to 2 decimal places.
+
+
+#Example 4
+#f-string formatting
+name = "Ayushi"
+age = 25
+salary = 50000.56789
+print(f"Name: {name}, Age: {age}, Salary: ${salary:.2f}")
+#f-string is a way to format strings in Python.
+#It is a more readable and concise way to format strings than the traditional string formatting methods.
+#It allows you to embed expressions inside string literals, using curly braces {}.  
+#The expressions are evaluated at runtime and then formatted using the __format__ protocol.
