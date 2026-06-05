@@ -88,9 +88,10 @@ print(join_str("Hello","World!","python")) #Output: Hello World!
 
 #**kwargs - these are the variable length arguments that can take any number of keyword arguments. The arguments are passed as a dictionary to the function.
 def func6(**kwargs):    
-    return f"The arguments are {kwargs}"
+    return f"The arguments are {kwargs, }"
 
 print(func6(a=1,b=2,c=3)) #Output: The arguments are {'a': 1, 'b': 2, 'c': 3}
+
 
 #You can also use both *args and **kwargs in the same function definition, but *args should be before **kwargs.
 def func7(*args, **kwargs):
@@ -100,3 +101,73 @@ print(func7(1,2,3,a=4,b=5,c=6)) #Output: The positional arguments are (1, 2, 3) 
 # '*' - wildcard character - it is used to unpack the arguments from a list or a tuple. It can also be used to unpack the keyword arguments from a dictionary.
 
 
+def func8(**kwargs):
+    for key,value in kwargs.items():
+        print(f"{key}: {value}")
+
+func8(name="Ayushi", age=25, city="Delhi") #Output: name: Ayushi age: 25 city: Delhi 
+
+
+#Return statement - it is used to return a value from a function. It is used to exit the function and return a value to the caller. A function can have multiple return statements, but only one of them will be executed when the function is called.
+def func9(a,b):
+    if a > b:
+        return f"{a} is greater than {b}"
+    elif a < b:
+        return f"{a} is less than {b}"
+    else:
+        return f"{a} is equal to {b}"
+    
+print(func9(5,3)) #Output: 5 is greater than 3
+print(func9(2,4)) #Output: 2 is less than 4
+print(func9(3,3)) #Output: 3 is equal to 3
+
+#Lambda function - it is a small anonymous function that can take any number of arguments,
+#  but can only have one expression.
+#  It is used to create small, throwaway functions that are not bound to a name.
+
+#Keys:
+# 1.Anonymous function - means no name
+# 2. Syntax - lambda arguments: expression
+# 3. They can take only 2 expression
+# 4. Return value- no need of return keyword explicitly
+# 5. use case - often used for , filter , mapping, sorting cal.
+#usually as an argument to higher-order functions, which are functions that take other functions as arguments.
+#map(), filter(), sorted(), reduce() are higher-order functions that are commonly used with lambda functions.
+
+
+#Example 1(add 2 numbers)
+
+add = lambda x,y: x+y
+print(add(2,3)) #Output: 5
+
+#Example 2
+
+number = [1,2,3,4,5,6,7,8,9]
+even = list(filter(lambda x:x%2==0 , number)) #filter function is used to filter the elements from a list based on a condition. It takes a function and a list as arguments and returns a new list with the elements that satisfy the condition.
+print(even) #Output: [2, 4, 6, 8]
+
+#Example 3
+
+multiply = [lambda x:x * i for i in range(4)] # This will take i =3 for every iteration.
+print([m(2) for m in multiply]) #Output: [0, 2, 4, 6]
+#m(2) - passing the argument to the lambda function for each iteration by passing the value 2 for x
+
+
+#SCOPE - it is the region of the program where a variable is defined and can be accessed. There are three types of scope in Python - Local Scope, Enclosing Scope, Global Scope, Built-in Scope.
+#Local Scope - it is the scope of a variable that is defined inside a function. It can only be accessed within the function and cannot be accessed outside the function.
+#Enclosing Scope - it is the scope of a variable that is defined in the enclosing function. It can be accessed within the enclosing function and the nested function, but cannot be accessed outside the enclosing function.
+#Global Scope - it is the scope of a variable that is defined outside any function. It can be accessed anywhere in the program.
+#Built-in Scope - it is the scope of a variable that is defined in the built-in module. It can be accessed anywhere in the program.
+#Lifetime - it is the duration for which a variable exists in the memory. A variable that is defined in the local scope will only exist for the duration of the function call, while a variable that is defined in the global scope will exist for the duration of the program.
+
+#Example of enclosing scope
+
+def outer_func():
+    x = 10 #x is defined in the enclosing scope
+    def inner_func():
+        #x+=5 This will give an error because x is not defined in the inner function, it is defined in the outer function. To fix this we can use the nonlocal keyword to access the variable from the enclosing scope.
+        nonlocal x #Using the nonlocal keyword to access the variable from the enclosing scope
+        x += 5 #Modifying the variable from the enclosing scope
+        print(x) #Accessing the variable from the enclosing scope
+    inner_func()
+outer_func() #Output: 15
