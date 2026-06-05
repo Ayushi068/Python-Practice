@@ -1,0 +1,41 @@
+#Decorator - wrapping a function inside another function to enhnace its functionality 
+# and changes behaviour without modifying the original function. 
+# It is a powerful tool to modify the behaviour of a function or class.
+
+#powerful tool to modify the behaviour of a function or class.
+
+#Functions - first class objects in Python - 
+                                    #can be passed as arguments to decorators,
+                                    # can be passed as arguments to other functions, 
+                                    # can be returned from other functions, c
+                                    # an be assigned to variables, 
+                                    # can be stored in data structures.
+
+#Funtion wrapping - they take one function as input and return another function as output with extra functionality.
+
+# Code reusability - you can use the wrapper code for extra benefit or code automation level.
+
+#Syntax : @decorator_name
+
+#use in python for framework:
+#decorators are heavily used in "flask" &"Django" to manage routes, permissions, other aspects of web applications.
+
+
+
+def ayushi_decorator(func): #function taking function as argument
+    def wrapper(): #it wraps the additional behaviour around the original function
+        print("before the function runs")                   #additonal behaviour 
+        func() #this will call the original function        #additonal behaviour 
+        print("after the function runs")                    #additonal behaviour 
+    return wrapper 
+
+#use of decorator - simple function
+
+@ayushi_decorator #decorator called with the original function
+def say_hello(): #refers to the original function
+    print("Hello, World!")
+
+say_hello() #wrapper call 
+
+
+ 
