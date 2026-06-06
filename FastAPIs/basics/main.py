@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request #FastAPI  is just a class which is used to create an instance of the FastAPI application.
-from mock_data import products #This line imports the products variable from the mock_data module. This variable likely contains some sample data that we can use in our API.
+from basics.mock_data import products #This line imports the products variable from the mock_data module. This variable likely contains some sample data that we can use in our API.
+from basics.dtos import ProductRequest #This line imports the ProductRequest class from the dtos module. This class is likely a Pydantic model that defines the structure of the data that we want to receive in the request body when creating a new product.
 
 app = FastAPI() #Here we are creating an instance of the FastAPI application and assigning it to the variable app.
 
@@ -116,3 +117,58 @@ def filter_products(request: Request):
 #based on the request the server will response with some message that data is deleted successfully.
 #in this case in the request body we will send the id of the data that we want to delete.
 
+
+
+#different types of HTTP methods
+#ways to send data to the server - query parameters, path parameters, request body, headers, cookies, etc.
+
+#Pydantic is a library that is used for data validation and settings management using python type annotations. 
+# It is used to define the structure of the data that we want to send or receive from the server. 
+# It helps us to validate the data and also to convert the data into the desired format.
+
+@app.post("/create_products")
+def create_product(request: ProductRequest):
+    #data is sent in the json format in the request body.
+    #we can access the data sent by the client in the request body using the request object.
+    #we can also use the ProductRequest model to validate the data sent by the client in the request body.
+    #using ProductRequest the json will be sutomatically converted into ProducRequest object
+    #now we cannot add the product to the products list because it is a list of dictionaries and we cannot add an object of ProductRequest class to the list of dictionaries.
+    #though list can contain any type of data but it is not a good practice to have a list with different types of data. It is better to have a list with the same type of data.
+    #we can convert the ProductRequest object into a dictionary and then add it to the products list.
+    product_dict = request.model_dump() #This will convert the ProductRequest object into a dictionary.
+    products.append(product_dict) #This will add the product dictionary to the products list.
+    return {
+        "message": "Product created successfully",
+        "product": products
+    }
+#How to validate data - DTOs
+#How to call different Http Methos - Any Tool
+
+@app.put("/update_product/{id}")
+def update_product(data:ProductRequest,id:int):
+    # for p in products:
+    #     if p.get("id") == id:
+    #         p["title"] = data.title
+    #         p["price"] = data.price
+    #         p["count"] = data.count
+    # return {"status": "product updated successfully"}
+
+    for index,product in enumerate(products):
+        if product.get("id") == id:
+            products[index] = data.model_dump() #This will convert the ProductRequest object into a dictionary and then update the product in the products list.
+            return {f"status: product updated successfully {products[index]}"}
+    return {"status": "product not found"}
+
+
+@app.delete("/delete_product/{id}")
+def delete_product(id:int):
+    # for product in products:
+    #     if product.get("id") == id:
+    #         #products.remove(product) #This will remove the product from the products list.
+
+    for index,product in enumerate(products):
+        if product.get("id") == id:
+            product_deleted = products.pop(index) #This will remove the product from the products list.
+            return {f"status: product deleted successfully {product_deleted}"}
+    
+    return {"status": "product not found"}
