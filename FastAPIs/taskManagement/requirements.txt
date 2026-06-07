@@ -1,0 +1,15 @@
+fastapi[standard]
+SQLAlchemy
+#this is an ORM (Object Relational Mapper) that allows us to interact with the database using Python objects instead of writing raw SQL queries. 
+#It provides a high-level interface for working with databases and makes it easier to perform CRUD (Create, Read, Update, Delete) operations on the database.
+pydantic_settings #for managing settings and environment variables
+psycopg2 #for connecting to postgresql databas
+#this is a db driver for postgresql. It allows us to connect to the database and perform operations on it.
+
+#uvicorn is a lightning-fast ASGI server implementation, using uvloop and httptools.
+# It is designed to be easy to use and provides high performance for serving FastAPI applications.
+
+pyjwt # for generating and verifying JSON Web Tokens (JWTs) for authentication and authorization in our application. It allows us to create secure tokens that can be used to authenticate users and protect routes in our FastAPI application.
+pwdlib[argon2] # for hashing and verifying passwords securely using the Argon2 algorithm. It provides a simple interface for hashing passwords and verifying them against stored hashes, making it easier to implement secure password handling in our FastAPI application.
+
+alembic
